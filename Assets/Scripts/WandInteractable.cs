@@ -21,10 +21,11 @@ public class WandInteractable : WVRInteractable {
 
   void AttachWandToController(WVRController controller)
   {
-    controller.HideViveController(true);
-    controller.controllerState = WVRController.ControllerState.WandHeld;
-    wandTransform.localPosition = Vector3.zero;
-    wandTransform.SetParent(transform, false);
-    Destroy(gameObject);
+    controller.SwitchToWand();
+    wandTransform.gameObject.SetActive(false);
+    //controller.controllerState = WVRController.ControllerState.WandHeld;
+    //wandTransform.localPosition = Vector3.zero;
+    //wandTransform.SetParent(controller.wandAttachPoint, true);
+    //Destroy(gameObject);
   }
 }

@@ -10,6 +10,8 @@ public class WVRController : MonoBehaviour {
   SteamVR_Controller.Device controller { get { return SteamVR_Controller.Input((int)trackedObj.index);} }
   SteamVR_TrackedObject trackedObj;
 
+  public Transform wandAttachPoint;
+
   public enum ControllerState
   {
     NoWand,
@@ -76,8 +78,14 @@ public class WVRController : MonoBehaviour {
     }
   }
 
+  public void SwitchToWand()
+  {
+    HideViveController(true);
+    wandAttachPoint.gameObject.SetActive(true);
+  }
+
   public void HideViveController(bool hide)
   {
-
+    transform.GetChild(0).gameObject.SetActive(false);
   }
 }
