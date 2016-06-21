@@ -11,13 +11,16 @@ public class EnemySpawner : MonoBehaviour {
   float timer = 0f;
 
   [HideInInspector]
-  public bool spawnsStarted;
+  public bool spawnsStarted = false;
 
   void Start () {
 	  
 	}
 	
 	void Update () {
+    if (!spawnsStarted)
+      return;
+
     timer += Time.deltaTime;
     if(timer > waveFrequency)
     {
