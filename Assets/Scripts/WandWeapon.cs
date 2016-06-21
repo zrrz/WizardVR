@@ -22,6 +22,8 @@ public class WandWeapon : MonoBehaviour {
   Transform spellcastPoint;
   public float spellFizzleTime = 4f;
   public float maxSpellSize = 25f;
+  public float scalingSpeed = 1.1f;
+  public bool canFizzle = true;
 
   //Active OO data
   SpellType currentSpell;
@@ -42,7 +44,7 @@ public class WandWeapon : MonoBehaviour {
 	  if(castingSpell)
     {
       spellcastTime += Time.deltaTime;
-      if (spellcastTime > spellFizzleTime)
+      if (canFizzle && spellcastTime > spellFizzleTime)
       {
         if(currentSpell != SpellType.Light)
           FizzleSpell();
@@ -50,8 +52,8 @@ public class WandWeapon : MonoBehaviour {
       else {
         if (totalScalingValue < maxSpellSize)
         {
-          ParticleUtilities.ScaleParticleSystem(currentParticleEffect, 1 + (1.1f * Time.deltaTime));
-          totalScalingValue *= (1 + (1.1f * Time.deltaTime));
+          ParticleUtilities.ScaleParticleSystem(currentParticleEffect, 1 + (scalingSpeed * Time.deltaTime));
+          totalScalingValue *= (1 + (scalingSpeed * Time.deltaTime));
         }
 
         //switch (currentSpell)
@@ -89,31 +91,26 @@ public class WandWeapon : MonoBehaviour {
     if (currentSpell == SpellType.None)
       return;
 
-    //if(currentParticleEffect)
-    //{
-    //  Destroy(currentParticleEffect.gameObject);
-    //}
-    //GameObject spellParticle;
-    //switch (currentSpell)
-    //{
-    //  case SpellType.Fire:
-    //    spellParticle = fireParticle;
-    //    break;
-    //  case SpellType.Light:
-    //    spellParticle = lightParticle;
-    //    break;
-    //  default:
-    //    spellParticle = null;
-    //    break;
-    //}
-    //if (spellParticle != null)
-    //{
-    //  currentParticleEffect = (GameObject)Instantiate(spellParticle, spellcastPoint.position, spellcastPoint.rotation);
-    //  currentParticleEffect.transform.SetParent(spellcastPoint);
-      castingSpell = true;
-      spellcastTime = 0f;
-      totalScalingValue = 1f;
-    //}
+    castingSpell = true;
+    spellcastTime = 0f;
+    totalScalingValue = 1f;
+  }
+
+  public int RandomSpell()
+  {
+    do
+    {
+      currentSpell = (SpellType)Random.Range(0, System.Enum.GetNames(typeof(SpellType)).Length);
+      //currentSpell = (SpellType)(((int)currentSpell + 1) % System.Enum.GetNames(typeof(SpellType)).Length);
+    } while (currentSpell == SpellType.None);
+  
+    if (currentParticleEffect)
+    {
+      Destroy(currentParticleEffect.gameObject);
+    }
+    ResetSpell();
+
+    return (int)currentSpell;
   }
 
   public void ReleaseSpell(Vector3 velocity)
@@ -142,6 +139,7 @@ public class WandWeapon : MonoBehaviour {
       //spell.GetComponent<Rigidbody>().AddForce(velocity * 100f);
       spell.GetComponent<SpellHitEffect>().scalingValue = totalScalingValue;
       spell.GetComponent<SphereCollider>().radius *= totalScalingValue;
+      castingSpell = false;
       //Destroy(spell, 4f);
     }
     ResetSpell();

@@ -8,6 +8,12 @@ public class LightProjectile : SpellHitEffect {
   void OnCollisionEnter(Collision col)
   {
     GetComponent<Rigidbody>().isKinematic = true;
+    GetComponent<SphereCollider>().enabled = false;
+    Collider[] overlapCols = Physics.OverlapSphere(col.contacts[0].point, GetComponent<SphereCollider>().radius * scalingValue);
+    foreach (Collider overlapCol in overlapCols)
+    {
+      overlapCol.SendMessage("TakeDamage", 1f, SendMessageOptions.DontRequireReceiver);
+    }
     transform.SetParent(col.transform);
     StartCoroutine(FadeOut());
   }
