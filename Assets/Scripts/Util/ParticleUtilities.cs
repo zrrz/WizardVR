@@ -13,7 +13,7 @@ public class ParticleUtilities : MonoBehaviour {
 	
 	}
 
-  public static void ApplyScale(GameObject go, float scalingValue)
+  public static void ScaleParticleSystem(GameObject go, float scalingValue)
   {
       //Scale Shuriken Particles Values
       ParticleSystem[] systems;
@@ -30,7 +30,10 @@ public class ParticleUtilities : MonoBehaviour {
       foreach (Light light in lights)
       {
         light.range *= scalingValue;
-        light.transform.localPosition *= scalingValue;
+        if (light.gameObject != go)
+        {
+          light.transform.localPosition *= scalingValue;
+        }
       }
   }
 
@@ -42,7 +45,9 @@ public class ParticleUtilities : MonoBehaviour {
     if (ps.startSpeed > 0.01f)
       ps.startSpeed *= scalingValue;
     if (ps.gameObject != parent)
+    {
       ps.transform.localPosition *= scalingValue;
+    }
 
     //SerializedObject psSerial = new SerializedObject(ps);
 
@@ -102,20 +107,26 @@ public class ParticleUtilities : MonoBehaviour {
     if (velocityOverLifetime.enabled)
     {
       var curveX = velocityOverLifetime.x;
-      curveX.curveMin.keys = IterateKeys(curveX.curveMin.keys, scalingValue);
-      curveX.curveMax.keys = IterateKeys(curveX.curveMin.keys, scalingValue);
+      if(curveX.curveMin != null)
+        curveX.curveMin.keys = IterateKeys(curveX.curveMin.keys, scalingValue);
+      if (curveX.curveMax != null)
+        curveX.curveMax.keys = IterateKeys(curveX.curveMin.keys, scalingValue);
       curveX.curveScalar *= scalingValue;
       velocityOverLifetime.x = curveX;
 
       var curveY = velocityOverLifetime.y;
-      curveY.curveMin.keys = IterateKeys(curveY.curveMin.keys, scalingValue);
-      curveY.curveMax.keys = IterateKeys(curveY.curveMin.keys, scalingValue);
+      if (curveY.curveMin != null)
+        curveY.curveMin.keys = IterateKeys(curveY.curveMin.keys, scalingValue);
+      if (curveY.curveMax != null)
+        curveY.curveMax.keys = IterateKeys(curveY.curveMin.keys, scalingValue);
       curveY.curveScalar *= scalingValue;
       velocityOverLifetime.y = curveY;
 
       var curveZ = velocityOverLifetime.z;
-      curveZ.curveMin.keys = IterateKeys(curveZ.curveMin.keys, scalingValue);
-      curveZ.curveMax.keys = IterateKeys(curveZ.curveMin.keys, scalingValue);
+      if (curveZ.curveMin != null)
+        curveZ.curveMin.keys = IterateKeys(curveZ.curveMin.keys, scalingValue);
+      if (curveZ.curveMax != null)
+        curveZ.curveMax.keys = IterateKeys(curveZ.curveMin.keys, scalingValue);
       curveZ.curveScalar *= scalingValue;
       velocityOverLifetime.z = curveZ;
     }
@@ -137,118 +148,148 @@ public class ParticleUtilities : MonoBehaviour {
     //  IterateKeys(psSerial.FindProperty("ClampVelocityModule.magnitude.maxCurve").animationCurveValue);
     //}
 
-    var force = ps.forceOverLifetime;
-    if (velocityOverLifetime.enabled)
+    var forceOverLifetime = ps.forceOverLifetime;
+    if (forceOverLifetime.enabled)
     {
+      var curveX = forceOverLifetime.x;
+      curveX.curveMin.keys = IterateKeys(curveX.curveMin.keys, scalingValue);
+      curveX.curveMax.keys = IterateKeys(curveX.curveMax.keys, scalingValue);
+      curveX.curveScalar *= scalingValue;
+      forceOverLifetime.x = curveX;
 
+      var curveY = forceOverLifetime.y;
+      curveY.curveMin.keys = IterateKeys(curveY.curveMin.keys, scalingValue);
+      curveY.curveMax.keys = IterateKeys(curveY.curveMax.keys, scalingValue);
+      curveY.curveScalar *= scalingValue;
+      forceOverLifetime.y = curveY;
+
+      var curveZ = forceOverLifetime.z;
+      curveZ.curveMin.keys = IterateKeys(curveZ.curveMin.keys, scalingValue);
+      curveZ.curveMax.keys = IterateKeys(curveZ.curveMax.keys, scalingValue);
+      curveZ.curveScalar *= scalingValue;
+      forceOverLifetime.z = curveZ;
     }
 
+    ////Scale Force Module
+    //if (psSerial.FindProperty("ForceModule.enabled").boolValue)
+    //{
+    //  psSerial.FindProperty("ForceModule.x.scalar").floatValue *= ScalingValue;
+    //  IterateKeys(psSerial.FindProperty("ForceModule.x.minCurve").animationCurveValue);
+    //  IterateKeys(psSerial.FindProperty("ForceModule.x.maxCurve").animationCurveValue);
+    //  psSerial.FindProperty("ForceModule.y.scalar").floatValue *= ScalingValue;
+    //  IterateKeys(psSerial.FindProperty("ForceModule.y.minCurve").animationCurveValue);
+    //  IterateKeys(psSerial.FindProperty("ForceModule.y.maxCurve").animationCurveValue);
+    //  psSerial.FindProperty("ForceModule.z.scalar").floatValue *= ScalingValue;
+    //  IterateKeys(psSerial.FindProperty("ForceModule.z.minCurve").animationCurveValue);
+    //  IterateKeys(psSerial.FindProperty("ForceModule.z.maxCurve").animationCurveValue);
+    //}
 
-    //TODO fix the rest of this
+    var shape = ps.shape;
+    if (shape.enabled)
+    {
+      shape.box *= scalingValue;
+      shape.radius *= scalingValue;
 
-    //    //Scale Force Module
-    //    if (psSerial.FindProperty("ForceModule.enabled").boolValue)
-    //  {
-    //    psSerial.FindProperty("ForceModule.x.scalar").floatValue *= ScalingValue;
-    //    IterateKeys(psSerial.FindProperty("ForceModule.x.minCurve").animationCurveValue);
-    //    IterateKeys(psSerial.FindProperty("ForceModule.x.maxCurve").animationCurveValue);
-    //    psSerial.FindProperty("ForceModule.y.scalar").floatValue *= ScalingValue;
-    //    IterateKeys(psSerial.FindProperty("ForceModule.y.minCurve").animationCurveValue);
-    //    IterateKeys(psSerial.FindProperty("ForceModule.y.maxCurve").animationCurveValue);
-    //    psSerial.FindProperty("ForceModule.z.scalar").floatValue *= ScalingValue;
-    //    IterateKeys(psSerial.FindProperty("ForceModule.z.minCurve").animationCurveValue);
-    //    IterateKeys(psSerial.FindProperty("ForceModule.z.maxCurve").animationCurveValue);
-    //  }
+      if(shape.shapeType == ParticleSystemShapeType.Mesh)
+      {
+        Mesh mesh = shape.mesh;
+        if(mesh != null)
+        {
+          DuplicateAndScaleMesh(mesh, scalingValue);
+          shape.mesh = mesh;
+        }
+      }
+    }
 
-    //  //Scale Shape Module
-    //  if (psSerial.FindProperty("ShapeModule.enabled").boolValue)
-    //  {
-    //    psSerial.FindProperty("ShapeModule.boxX").floatValue *= ScalingValue;
-    //    psSerial.FindProperty("ShapeModule.boxY").floatValue *= ScalingValue;
-    //    psSerial.FindProperty("ShapeModule.boxZ").floatValue *= ScalingValue;
-    //    psSerial.FindProperty("ShapeModule.radius").floatValue *= ScalingValue;
+      //  //Scale Shape Module
+      //  if (psSerial.FindProperty("ShapeModule.enabled").boolValue)
+      //  {
+      //    psSerial.FindProperty("ShapeModule.boxX").floatValue *= ScalingValue;
+      //    psSerial.FindProperty("ShapeModule.boxY").floatValue *= ScalingValue;
+      //    psSerial.FindProperty("ShapeModule.boxZ").floatValue *= ScalingValue;
+      //    psSerial.FindProperty("ShapeModule.radius").floatValue *= ScalingValue;
 
-    //    //Create a new scaled Mesh if there is a Mesh reference
-    //    //(ShapeModule.type 6 == Mesh)
-    //    if (psSerial.FindProperty("ShapeModule.type").intValue == 6)
-    //    {
-    //      Object obj = psSerial.FindProperty("ShapeModule.m_Mesh").objectReferenceValue;
-    //      if (obj != null)
-    //      {
-    //        Mesh mesh = (Mesh)obj;
-    //        string assetPath = AssetDatabase.GetAssetPath(mesh);
-    //        string name = assetPath.Substring(assetPath.LastIndexOf("/") + 1);
+      //    //Create a new scaled Mesh if there is a Mesh reference
+      //    //(ShapeModule.type 6 == Mesh)
+      //    if (psSerial.FindProperty("ShapeModule.type").intValue == 6)
+      //    {
+      //      Object obj = psSerial.FindProperty("ShapeModule.m_Mesh").objectReferenceValue;
+      //      if (obj != null)
+      //      {
+      //        Mesh mesh = (Mesh)obj;
+      //        string assetPath = AssetDatabase.GetAssetPath(mesh);
+      //        string name = assetPath.Substring(assetPath.LastIndexOf("/") + 1);
 
-    //        //Mesh to use
-    //        Mesh meshToUse = null;
-    //        bool createScaledMesh = true;
-    //        float meshScale = ScalingValue;
+      //        //Mesh to use
+      //        Mesh meshToUse = null;
+      //        bool createScaledMesh = true;
+      //        float meshScale = ScalingValue;
 
-    //        //Mesh has already been scaled: extract scaling value and re-scale base effect
-    //        if (name.Contains("(scaled)"))
-    //        {
-    //          string scaleStr = name.Substring(name.LastIndexOf("x") + 1);
-    //          scaleStr = scaleStr.Remove(scaleStr.IndexOf(" (scaled).asset"));
+      //        //Mesh has already been scaled: extract scaling value and re-scale base effect
+      //        if (name.Contains("(scaled)"))
+      //        {
+      //          string scaleStr = name.Substring(name.LastIndexOf("x") + 1);
+      //          scaleStr = scaleStr.Remove(scaleStr.IndexOf(" (scaled).asset"));
 
-    //          float oldScale = float.Parse(scaleStr);
-    //          if (oldScale != 0)
-    //          {
-    //            meshScale = oldScale * ScalingValue;
+      //          float oldScale = float.Parse(scaleStr);
+      //          if (oldScale != 0)
+      //          {
+      //            meshScale = oldScale * ScalingValue;
 
-    //            //Check if there's already a mesh with the correct scale
-    //            string unscaledName = assetPath.Substring(0, assetPath.LastIndexOf(" x"));
-    //            assetPath = unscaledName;
-    //            string newPath = assetPath + " x" + meshScale + " (scaled).asset";
-    //            Mesh alreadyScaledMesh = (Mesh)AssetDatabase.LoadAssetAtPath(newPath, typeof(Mesh));
-    //            if (alreadyScaledMesh != null)
-    //            {
-    //              meshToUse = alreadyScaledMesh;
-    //              createScaledMesh = false;
-    //            }
-    //            else
-    //            //Load original unscaled mesh
-    //            {
-    //              Mesh orgMesh = (Mesh)AssetDatabase.LoadAssetAtPath(assetPath, typeof(Mesh));
-    //              if (orgMesh != null)
-    //              {
-    //                mesh = orgMesh;
-    //              }
-    //            }
-    //          }
-    //        }
-    //        else
-    //        //Verify if original mesh has already been scaled to that value
-    //        {
-    //          string newPath = assetPath + " x" + meshScale + " (scaled).asset";
-    //          Mesh alreadyScaledMesh = (Mesh)AssetDatabase.LoadAssetAtPath(newPath, typeof(Mesh));
-    //          if (alreadyScaledMesh != null)
-    //          {
-    //            meshToUse = alreadyScaledMesh;
-    //            createScaledMesh = false;
-    //          }
-    //        }
+      //            //Check if there's already a mesh with the correct scale
+      //            string unscaledName = assetPath.Substring(0, assetPath.LastIndexOf(" x"));
+      //            assetPath = unscaledName;
+      //            string newPath = assetPath + " x" + meshScale + " (scaled).asset";
+      //            Mesh alreadyScaledMesh = (Mesh)AssetDatabase.LoadAssetAtPath(newPath, typeof(Mesh));
+      //            if (alreadyScaledMesh != null)
+      //            {
+      //              meshToUse = alreadyScaledMesh;
+      //              createScaledMesh = false;
+      //            }
+      //            else
+      //            //Load original unscaled mesh
+      //            {
+      //              Mesh orgMesh = (Mesh)AssetDatabase.LoadAssetAtPath(assetPath, typeof(Mesh));
+      //              if (orgMesh != null)
+      //              {
+      //                mesh = orgMesh;
+      //              }
+      //            }
+      //          }
+      //        }
+      //        else
+      //        //Verify if original mesh has already been scaled to that value
+      //        {
+      //          string newPath = assetPath + " x" + meshScale + " (scaled).asset";
+      //          Mesh alreadyScaledMesh = (Mesh)AssetDatabase.LoadAssetAtPath(newPath, typeof(Mesh));
+      //          if (alreadyScaledMesh != null)
+      //          {
+      //            meshToUse = alreadyScaledMesh;
+      //            createScaledMesh = false;
+      //          }
+      //        }
 
-    //        //Duplicate and scale mesh vertices if necessary
-    //        if (createScaledMesh)
-    //        {
-    //          string newMeshPath = assetPath + " x" + meshScale + " (scaled).asset";
-    //          meshToUse = (Mesh)AssetDatabase.LoadAssetAtPath(newMeshPath, typeof(Mesh));
-    //          if (meshToUse == null)
-    //          {
-    //            meshToUse = DuplicateAndScaleMesh(mesh, meshScale);
-    //            AssetDatabase.CreateAsset(meshToUse, newMeshPath);
-    //          }
-    //        }
+      //        //Duplicate and scale mesh vertices if necessary
+      //        if (createScaledMesh)
+      //        {
+      //          string newMeshPath = assetPath + " x" + meshScale + " (scaled).asset";
+      //          meshToUse = (Mesh)AssetDatabase.LoadAssetAtPath(newMeshPath, typeof(Mesh));
+      //          if (meshToUse == null)
+      //          {
+      //            meshToUse = DuplicateAndScaleMesh(mesh, meshScale);
+      //            AssetDatabase.CreateAsset(meshToUse, newMeshPath);
+      //          }
+      //        }
 
-    //        //Apply new Mesh
-    //        psSerial.FindProperty("ShapeModule.m_Mesh").objectReferenceValue = meshToUse;
-    //      }
-    //    }
-    //  }
+      //        //Apply new Mesh
+      //        psSerial.FindProperty("ShapeModule.m_Mesh").objectReferenceValue = meshToUse;
+      //      }
+      //    }
+      //  }
 
-    //  //Apply Modified Properties
-    //  psSerial.ApplyModifiedProperties();
-  }
+      //  //Apply Modified Properties
+      //  psSerial.ApplyModifiedProperties();
+    }
 
   public static Keyframe[] IterateKeys(Keyframe[] keys, float scalingValue)
   {
@@ -259,11 +300,25 @@ public class ParticleUtilities : MonoBehaviour {
     return keys;
   }
 
-  //private static void IterateKeys(ParticleSystem.MinMaxCurve curve, float scalingValue)
-  //{
-  //  for (int i = 0; i < curve.Length; i++)
-  //  {
-  //    curve.keys[i].value *= scalingValue;
-  //  }
-  //}
+  //Create Scaled Mesh
+  static Mesh DuplicateAndScaleMesh(Mesh mesh, float Scale)
+  {
+    //Mesh scaledMesh = new Mesh();
+
+    Vector3[] scaledVertices = new Vector3[mesh.vertices.Length];
+    for (int i = 0; i < scaledVertices.Length; i++)
+    {
+      scaledVertices[i] = mesh.vertices[i] * Scale;
+    }
+    mesh.vertices = scaledVertices;
+
+    //scaledMesh.normals = mesh.normals;
+    //scaledMesh.tangents = mesh.tangents;
+    //scaledMesh.triangles = mesh.triangles;
+    //scaledMesh.uv = mesh.uv;
+    //scaledMesh.uv2 = mesh.uv2;
+    //scaledMesh.colors = mesh.colors;
+
+    return mesh;
+  }
 }
