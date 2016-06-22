@@ -4,141 +4,134 @@ using System.Collections;
 public class WandWeapon : MonoBehaviour {
 
   //TODO change these to ScriptableObjects
-  public GameObject idleParticle;
-  public GameObject fireParticle;
-  public GameObject lightParticle;
+  //public GameObject idleParticle;
+  //public GameObject fireParticle;
+  //public GameObject lightParticle;
 
-  public GameObject fireProjectile;
-  public GameObject lightProjectile;
+  //public GameObject fireProjectile;
+  //public GameObject lightProjectile;
 
-  public enum SpellType
-  {
-    None,
-    Fire,
-    Light
-  }
+  public SpellData[] spellData;
+
+  //public enum SpellType
+  //{
+  //  None,
+  //  Fire,
+  //  Light
+  //}
 
   [SerializeField]
   Transform spellcastPoint;
-  public float spellFizzleTime = 4f;
-  public float maxSpellSize = 25f;
-  public float scalingSpeed = 1.1f;
-  public bool canFizzle = true;
+  //public float spellFizzleTime = 4f;
+  //public float maxSpellSize = 25f;
+  //public float scalingSpeed = 1.1f;
+  //public bool canFizzle = true;
 
   //Active OO data
-  SpellType currentSpell;
+  //SpellType currentSpell;
+  int currentSpell;
   GameObject currentParticleEffect;
   float spellcastTime = 0f;
   bool castingSpell = false;
-  float totalScalingValue = 1f;
+  float totalSpellScaling = 1f;
 
   void Start () {
-    currentSpell = SpellType.Fire;
+    currentSpell = 0;
     ResetSpell();
     castingSpell = false;
     spellcastTime = 0f;
-    //currentParticleEffect = (GameObject)Instantiate(idleParticle, spellcastPoint.position, spellcastPoint.rotation);
   }
 	
 	void Update () {
 	  if(castingSpell)
     {
       spellcastTime += Time.deltaTime;
-      if (canFizzle && spellcastTime > spellFizzleTime)
+      if (spellData[currentSpell].canFizzle && spellcastTime > spellData[currentSpell].spellFizzleTime)
       {
-        if(currentSpell != SpellType.Light)
-          FizzleSpell();
+        FizzleSpell();
       }
       else {
-        if (totalScalingValue < maxSpellSize)
+        if (totalSpellScaling < spellData[currentSpell].maxSpellSize)
         {
+          float scalingSpeed = spellData[currentSpell].scalingSpeed;
           ParticleUtilities.ScaleParticleSystem(currentParticleEffect, 1 + (scalingSpeed * Time.deltaTime));
-          totalScalingValue *= (1 + (scalingSpeed * Time.deltaTime));
+          totalSpellScaling *= (1 + (scalingSpeed * Time.deltaTime));
         }
-
-        //switch (currentSpell)
-        //{
-        //  case SpellType.Fire:
-        //    break;
-        //  case SpellType.Light:
-        //    break;
-        //  default:
-        //    break;
-        //}
       }
     }
 	}
 
   public void NextSpellType()
   {
-    Debug.Log("NextSpellType");
-    currentSpell = (SpellType)(((int)currentSpell + 1) % System.Enum.GetNames(typeof(SpellType)).Length);
-    if (currentSpell == SpellType.None)
-    {
-      NextSpellType(); //Only want to toggle between active spells
-    }
-    else {
-      if (currentParticleEffect)
-      {
-        Destroy(currentParticleEffect.gameObject);
-      }
-      ResetSpell();
-    }
+    //Debug.Log("NextSpellType");
+    currentSpell++;
+    if (currentSpell > spellData.Length)
+      currentSpell = 0;
+    //currentSpell = (SpellType)(((int)currentSpell + 1) % System.Enum.GetNames(typeof(SpellType)).Length);
+    //if (currentSpell == SpellType.None)
+    //{
+      //NextSpellType(); //Only want to toggle between active spells
+    //}
+    //else {
+    //if (currentParticleEffect)
+    //{
+    //  Destroy(currentParticleEffect.gameObject);
+    //}
+    ResetSpell();
+    //}
   }
 
   public void StartSpellCast()
   {
-    if (currentSpell == SpellType.None)
-      return;
+    //if (currentSpell == SpellType.None)
+    //  return;
 
     castingSpell = true;
     spellcastTime = 0f;
-    totalScalingValue = 1f;
+    totalSpellScaling = 1f;
   }
 
   public int RandomSpell()
   {
-    do
-    {
-      currentSpell = (SpellType)Random.Range(0, System.Enum.GetNames(typeof(SpellType)).Length);
-      //currentSpell = (SpellType)(((int)currentSpell + 1) % System.Enum.GetNames(typeof(SpellType)).Length);
-    } while (currentSpell == SpellType.None);
+    currentSpell = Random.Range(0, spellData.Length);
+    //do
+    //{
+    //  currentSpell = (SpellType)Random.Range(0, System.Enum.GetNames(typeof(SpellType)).Length);
+    //  //currentSpell = (SpellType)(((int)currentSpell + 1) % System.Enum.GetNames(typeof(SpellType)).Length);
+    //} while (currentSpell == SpellType.None);
   
-    if (currentParticleEffect)
-    {
-      Destroy(currentParticleEffect.gameObject);
-    }
+    //if (currentParticleEffect)
+    //{
+    //  Destroy(currentParticleEffect.gameObject);
+    //}
     ResetSpell();
 
-    return (int)currentSpell;
+    return currentSpell;
   }
 
   public void ReleaseSpell(Vector3 velocity)
   {
-    if (currentSpell == SpellType.None || !castingSpell)
+    if (!castingSpell) //Redundant but safe. TODO cleanup
       return;
 
-    GameObject spell = null;
-    switch (currentSpell)
-    {
-      case SpellType.Fire:
-        spell = (GameObject)Instantiate(fireProjectile, spellcastPoint.position, spellcastPoint.rotation);
+    GameObject spell = (GameObject)Instantiate(spellData[currentSpell].projectileObject, spellcastPoint.position, spellcastPoint.rotation);
+    //switch (currentSpell)
+    //{
+    //  case SpellType.Fire:
+    //    spell = (GameObject)Instantiate(fireProjectile, spellcastPoint.position, spellcastPoint.rotation);
         
-        break;
-      case SpellType.Light:
-        spell = (GameObject)Instantiate(lightProjectile, spellcastPoint.position, spellcastPoint.rotation);
-        break;
-      default:
+    //    break;
+    //  case SpellType.Light:
+    //    spell = (GameObject)Instantiate(lightProjectile, spellcastPoint.position, spellcastPoint.rotation);
+    //    break;
+    //  default:
 
-        break;
-    }
+    //    break;
+    //}
     if(spell != null)
     {
-      ParticleUtilities.ScaleParticleSystem(spell, totalScalingValue);
-      spell.GetComponent<Rigidbody>().velocity = velocity * 1.5f;
-      //spell.GetComponent<Rigidbody>().AddForce(velocity * 100f);
-      spell.GetComponent<SpellHitEffect>().scalingValue = totalScalingValue;
-      spell.GetComponent<SphereCollider>().radius *= totalScalingValue;
+      ParticleUtilities.ScaleParticleSystem(spell, totalSpellScaling);
+      spell.GetComponent<Projectile>().Activate(velocity, spellcastPoint, transform.up, totalSpellScaling);
       castingSpell = false;
       //Destroy(spell, 4f);
     }
@@ -151,19 +144,19 @@ public class WandWeapon : MonoBehaviour {
     if (currentParticleEffect != null)
       Destroy(currentParticleEffect);
 
-    GameObject spellParticle;
-    switch (currentSpell)
-    {
-      case SpellType.Fire:
-        spellParticle = fireParticle;
-        break;
-      case SpellType.Light:
-        spellParticle = lightParticle;
-        break;
-      default:
-        spellParticle = null;
-        break;
-    }
+    GameObject spellParticle = spellData[currentSpell].castingObject;
+    //switch (currentSpell)
+    //{
+    //  case SpellType.Fire:
+    //    spellParticle = fireParticle;
+    //    break;
+    //  case SpellType.Light:
+    //    spellParticle = lightParticle;
+    //    break;
+    //  default:
+    //    spellParticle = null;
+    //    break;
+    //}
     if (spellParticle != null)
     {
       currentParticleEffect = (GameObject)Instantiate(spellParticle, spellcastPoint.position, spellcastPoint.rotation);
@@ -171,32 +164,29 @@ public class WandWeapon : MonoBehaviour {
     }
   }
 
-  //void BackToIdle()
-  //{
-  //  Destroy(currentParticleEffect);
-  //  currentSpell = SpellType.None;
-  //  currentParticleEffect = (GameObject)Instantiate(idleParticle, spellcastPoint.position, spellcastPoint.rotation);
-  //  currentParticleEffect.transform.SetParent(spellcastPoint);
-  //  castingSpell = false;
-  //}
+  public float ActiveSpellStrength()
+  {
+    if (!castingSpell)
+      return 0f;
+    return totalSpellScaling / spellData[currentSpell].maxSpellSize;
+  }
 
   public void FizzleSpell()
   {
-    switch (currentSpell)
-    {
-      case SpellType.Fire:
-        //TODO make spell "pop" and fade out
-        break;
-      case SpellType.Light:
+    //switch (currentSpell)
+    //{
+    //  case SpellType.Fire:
+    //    //TODO make spell "pop" and fade out
+    //    break;
+    //  case SpellType.Light:
         
-        break;
-      default:
+    //    break;
+    //  default:
         
-        break;
-    }
+    //    break;
+    //}
     Destroy(currentParticleEffect);
     castingSpell = false;
     ResetSpell();
-    //BackToIdle();
   }
 }

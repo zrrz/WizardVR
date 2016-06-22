@@ -1,19 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class LightProjectile : SpellHitEffect {
+public class LightProjectile : Projectile {
 
   public float lifeTime;
+
+  public override void Activate(Vector3 velocity, Transform startPosition, Vector3 direction, float scalingValue)
+  {
+    this.scalingValue = scalingValue;
+    this.startPosition = startPosition;
+
+    GetComponent<Rigidbody>().velocity = velocity * 2f;
+    GetComponent<SphereCollider>().radius *= scalingValue;
+  }
 
   void OnCollisionEnter(Collision col)
   {
     GetComponent<Rigidbody>().isKinematic = true;
     GetComponent<SphereCollider>().enabled = false;
-    Collider[] overlapCols = Physics.OverlapSphere(col.contacts[0].point, GetComponent<SphereCollider>().radius * scalingValue);
-    foreach (Collider overlapCol in overlapCols)
-    {
-      overlapCol.SendMessage("TakeDamage", 1f, SendMessageOptions.DontRequireReceiver);
-    }
+    ApplyOverlapSphereDamage(col.contacts[0].point, GetComponent<SphereCollider>().radius * scalingValue, 1f);
     transform.SetParent(col.transform);
     StartCoroutine(FadeOut());
   }
@@ -26,5 +32,5 @@ public class LightProjectile : SpellHitEffect {
       ParticleUtilities.ScaleParticleSystem(gameObject, 1 - (0.3f * Time.deltaTime)); //TODO fix this math so it times properly
     }
     Destroy(gameObject);
-  } 
+  }
 }

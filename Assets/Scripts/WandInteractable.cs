@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WandInteractable : WVRInteractable {
+public class WandInteractable : MonoBehaviour, IInteractable {
 
 	void Start () {
 	
@@ -13,9 +13,8 @@ public class WandInteractable : WVRInteractable {
 
   public Transform wandTransform;
 
-  public override void Interact(WVRController controller)
+  public void Interact(WVRController controller)
   {
-    base.Interact(controller);
     AttachWandToController(controller);
   }
 

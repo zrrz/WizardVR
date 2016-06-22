@@ -23,7 +23,7 @@ public class WVRController : MonoBehaviour {
 
   public ControllerState controllerState = ControllerState.NoWand;
 
-  List<WVRInteractable> touchedInteractables = new List<WVRInteractable>();
+  List<IInteractable> touchedInteractables = new List<IInteractable>();
 
   //List<Vector3> controllerPositions;
   Vector3 velocity;
@@ -60,6 +60,10 @@ public class WVRController : MonoBehaviour {
         {
           wandWeapon.StartSpellCast();
         }
+        else if(controller.GetPress(triggerButton))
+        {
+          controller.TriggerHapticPulse((ushort)Mathf.Lerp(0, 3999, wandWeapon.ActiveSpellStrength()));
+        }
         else if (controller.GetPressUp(triggerButton))
         {
           wandWeapon.ReleaseSpell(velocity);
@@ -72,7 +76,7 @@ public class WVRController : MonoBehaviour {
       case ControllerState.NoWand:
         if (controller.GetPressDown(triggerButton) && touchedInteractables.Count > 0)
         {
-          foreach (WVRInteractable interactable in touchedInteractables)
+          foreach (IInteractable interactable in touchedInteractables)
           {
             interactable.Interact(this);
             //Debug.Log("interacting");
@@ -87,7 +91,7 @@ public class WVRController : MonoBehaviour {
 
   void OnTriggerEnter(Collider col)
   {
-    WVRInteractable interactable = col.GetComponent<WVRInteractable>();
+    IInteractable interactable = col.GetComponent<IInteractable>();
     if (interactable != null)
     {
       touchedInteractables.Add(interactable);
@@ -97,7 +101,7 @@ public class WVRController : MonoBehaviour {
 
   void OnTriggerExit(Collider col)
   {
-    WVRInteractable interactable = col.GetComponent<WVRInteractable>();
+    IInteractable interactable = col.GetComponent<IInteractable>();
     if (interactable != null)
     {
       touchedInteractables.Remove(interactable);
@@ -109,7 +113,8 @@ public class WVRController : MonoBehaviour {
     HideViveController(true);
     wandAttachPoint.gameObject.SetActive(true);
     controllerState = ControllerState.WandHeld;
-    FindObjectOfType<EnemySpawner>().spawnsStarted = true;
+    //FindObjectOfType<EnemySpawner>().spawnsStarted = true;
+    FindObjectOfType<EnemyWizard>().state = EnemyWizard.State.Moving;
     GameObject.Find("Pedestal").GetComponent<Animation>().Play("Pedestal_Sink");
   }
 

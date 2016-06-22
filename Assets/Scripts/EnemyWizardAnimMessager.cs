@@ -14,4 +14,9 @@ public class EnemyWizardAnimMessager : MonoBehaviour {
   {
     enemyWizard.AttackFinished();
   }
+
+  public void ReleaseAttack()
+  {
+    enemyWizard.ReleaseAttack();
+  }
 }

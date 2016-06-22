@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour, IDamageable{
 
 	// Use this for initialization
 	void Start () {
@@ -13,8 +13,9 @@ public class Player : MonoBehaviour {
 	
 	}
 
-  void TakeDamage(float damage)
+  //The required method of the IDamageable interface
+  public void Damage(float damageTaken)
   {
-
+    //Do something fun
   }
 }
