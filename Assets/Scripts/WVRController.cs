@@ -29,6 +29,7 @@ public class WVRController : MonoBehaviour {
   Vector3 velocity;
 
   void Start () {
+	UnityEngine.VR.VRSettings.renderScale = 1.5f;
     trackedObj = GetComponent<SteamVR_TrackedObject>();
 
     var deviceIndex = SteamVR_Controller.GetDeviceIndex(SteamVR_Controller.DeviceRelation.Leftmost);
@@ -37,6 +38,8 @@ public class WVRController : MonoBehaviour {
 
     //controllerPositions = new List<Vector3>();
     wandWeapon = GetComponentInChildren<WandWeapon>(true); //TODO not have WandWeapon on controller at start
+
+		SwitchToWand ();
   }
 
   void Update () {
@@ -114,8 +117,9 @@ public class WVRController : MonoBehaviour {
     wandAttachPoint.gameObject.SetActive(true);
     controllerState = ControllerState.WandHeld;
     //FindObjectOfType<EnemySpawner>().spawnsStarted = true;
-    FindObjectOfType<EnemyWizard>().state = EnemyWizard.State.Moving;
-    GameObject.Find("Pedestal").GetComponent<Animation>().Play("Pedestal_Sink");
+	if(FindObjectOfType<EnemyWizard>() != null)
+      FindObjectOfType<EnemyWizard>().state = EnemyWizard.State.Moving;
+//    GameObject.Find("Pedestal").GetComponent<Animation>().Play("Pedestal_Sink");
   }
 
   public void HideViveController(bool hide)

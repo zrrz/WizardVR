@@ -1,0 +1,251 @@
+Version = 1.10.4.31262;
+CParticleEffect	$LOCAL$/Resource
+{
+	EditorInfosPosition = int2(73, 52);
+	OnSpawn = "$LOCAL$/Spawner";
+	CustomAttributes = "$LOCAL$/_GlobalAttributes";
+	Autostart = true;
+}
+CParticleRenderer_Billboard	$LOCAL$/CParticleRenderer_Billboard_F8C6095B
+{
+	EditorInfosPosition = int2(-508, -63);
+	CustomName = "Billboard";
+	BillboardingMaterial = AlphaBlend_Additive_Soft;
+	Diffuse = "Textures/FX/BB_Glow_02_64.dds";
+	BillboardMode = VelocitySpheroidalAlign;
+	AxisScale = 2.0000000e-002;
+	SoftnessDistance = 4.9999999e-003;
+}
+CParticleState	$LOCAL$/CParticleState_2CDC3D8E
+{
+	EditorInfosPosition = int2(-508, 65);
+	StateName = "State_0";
+	Evolvers = 
+	{
+		"$LOCAL$/Evolver_1",
+		"$LOCAL$/Script_1",
+	};
+}
+CActionFactoryWithChilds	$LOCAL$/Spawner
+{
+	EditorInfosPosition = int2(-162, -81);
+	ChildList = 
+	{
+		"$LOCAL$/Layer_VColor",
+	};
+}
+CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_CFEDDCDF
+{
+	EditorInfosPosition = int2(-508, 22);
+	Expression = "function void	Eval()
+{
+	// generate random point on mesh, sample position and vertex-color
+	int3	pCoords = Mesh.sampleParametricCoords();
+	Position = Mesh.samplePosition(pCoords);
+	float4	c = Mesh.sampleColor(pCoords);
+
+	// use vertex color\'s red channel to select which parts of the mesh should burn
+	// (3 is an arbitrary constant that controls the falloff width between burning and non-burning parts)
+	float	heatmap = saturate(3 * (c.r - (1 - BurnTreshold)));
+
+	// add 4D noise on top of heatmap to make it less uniform:
+	// (4D noise = animated 3D noise)
+	float	n =  0.6 + 0.4 *saturate(3 * pow(fast_noise(float4(Position*20,scene.Time*2))*0.6 + 0.4, 2));
+	heatmap *= n;
+	float	strength = pow(heatmap, 0.5);	// non-linear remap
+
+	// if we\'re below the cutoff, discard the particle
+	int		shouldDiscard = heatmap < Cutoff;
+
+	// make burning particles live longer than non-burning ones.
+	Life = select(0.1 + 2 * strength * (0.25 + 1.5 * pow(rand(0,1),4)), 0, shouldDiscard);
+	
+	// make non burning particles larger, and burning ones smaller (there will be more of them)
+	Size = select(0.003 + 0.007 * (1 - strength), 0, shouldDiscard);
+	
+	// compute initial temperature distribution, in degrees kelvin
+	// 272.15 dK is 0 degrees celcius. add base body temperature of 37 degrees on top.
+	// then add Burn temperature so that burning parts randomly range from
+	// ~800 dK to ~2100 DK
+	StartTemperature = 272.15 + 37 + (500 + pow(rand(0,1),2)*(1800-500)) * pow(heatmap,0.25);
+	Color = heatmap.x001;	// debug only: disable script evolver to see this debug
+	
+	// make the particle shoot out a bit from the vertex normal
+	float3	meshNormal = Mesh.sampleNormal(pCoords);
+	Velocity = EjectionSpeed * heatmap * meshNormal;
+	Position += meshNormal * 0.005;
+	Velocity += Mesh.sampleVelocity(pCoords) * 0.75;
+}
+";
+}
+CParticleDescriptor	$LOCAL$/CParticleDescriptor_513B7A38
+{
+	EditorInfosPosition = int2(-392, -44);
+	Renderer = "$LOCAL$/CParticleRenderer_Billboard_F8C6095B";
+	CustomFields = 
+	{
+		"$LOCAL$/CParticleFieldDeclaration_DF9565BA",
+		"$LOCAL$/CParticleFieldDeclaration_13D916DE",
+	};
+	Samplers = 
+	{
+		"$LOCAL$/CParticleSamplerProceduralTurbulence_3C68980A",
+		"$LOCAL$/CParticleSamplerCurve_6F1DEFF9",
+	};
+	SpawnEvaluator = "$LOCAL$/CCompilerSyntaxNodeExpression_CFEDDCDF";
+	States = 
+	{
+		"$LOCAL$/CParticleState_2CDC3D8E",
+	};
+}
+CShapeDescriptor	$LOCAL$/CShapeDescriptor_03FADECB
+{
+	ShapeType = MESH;
+	MeshResource = "Meshes/popman/popman_spell_casting.pkmm";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_DF9565BA
+{
+	FieldName = "Color";
+	FieldType = float4;
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_E85F02E1
+{
+	AttributeName = "EjectionSpeed";
+	AttributeDescription = "Ejection velocity factor along the mesh normal";
+	DefaultValueF4 = float4(2.9999999e-002, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
+	HasMin = true;
+	HasMax = true;
+	MaxValueF4 = float4(5.0000000e-001, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(10, 10, 10, 10);
+}
+CParticleAttributeList	$LOCAL$/_GlobalAttributes
+{
+	EditorInfosPosition = int2(-599, -20);
+	AttributeList = 
+	{
+		"$LOCAL$/CParticleAttributeDeclaration_D8D51E6B",
+		"$LOCAL$/CParticleAttributeDeclaration_9ECE67F9",
+		"$LOCAL$/CParticleAttributeDeclaration_E85F02E1",
+	};
+	SamplerList = 
+	{
+		"$LOCAL$/CParticleSamplerShape_4F654D51",
+	};
+}
+CParticleSamplerShape	$LOCAL$/CParticleSamplerShape_4F654D51
+{
+	SamplerName = "Mesh";
+	SamplerDescription = "Source emission mesh";
+	Shape = "$LOCAL$/CShapeDescriptor_03FADECB";
+}
+CActionFactoryParticleSpawnerBase	$LOCAL$/Layer_VColor
+{
+	EditorInfosPosition = int2(-288, -61);
+	Descriptor = "$LOCAL$/CParticleDescriptor_513B7A38";
+	Infinite = true;
+	DurationInSeconds = 4.0000000e+000;
+	SpawnCount = 5.0000000e+005;
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_9ECE67F9
+{
+	AttributeName = "Cutoff";
+	AttributeDescription = "A value above zero discards particles that are not burning enough";
+	DefaultValueF4 = float4(2.0000000e-002, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
+	HasMin = true;
+	HasMax = true;
+	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(10, 10, 10, 10);
+}
+CParticleEvolver_Script	$LOCAL$/Script_1
+{
+	CustomName = "Script";
+	Expression = "$LOCAL$/CCompilerSyntaxNodeExpression_09F23CEF";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_13D916DE
+{
+	FieldName = "StartTemperature";
+}
+CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_09F23CEF
+{
+	Expression = "function void	Eval()
+{
+	// get the temperature decay and alpha values for this particle in one single curve sample
+	// (will be faster to sample one float2 curve than to sample two float curves)
+	float2	lookup = TemperatureDecayAndAlpha.sample(LifeRatio);
+
+	// get the current temperature by weighting the start temperature
+	// with our temperature decay curve:
+	float	temperatureKelvins = StartTemperature * lookup.x;
+	
+	// call the blackbody function to get the RGB emission spectrum at this temperature
+	// Note: \'blackbody\' is experimental and subject to change. atm, it returns the raw
+	// radiation power, and we have to scale it down by a huge amount to get usable RGB values.
+	// It\'s faster and more \"accurate\" than sampling a custom color-curve though.
+	// This might make it into a future hypothetical radiation sampler after v1.6.0
+	float3	rgbEmission = blackbody_old(temperatureKelvins) * 0.000000025;
+	
+	// Rebuild the final RGBA color by inserting an independent alpha falloff sampled from a curve
+	Color = float4(rgbEmission, lookup.y);
+}
+";
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_D8D51E6B
+{
+	AttributeName = "BurnTreshold";
+	AttributeDescription = "Controls how much of the body burns";
+	DefaultValueF4 = float4(3.0000001e-001, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
+	HasMin = true;
+	HasMax = true;
+	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(10, 10, 10, 10);
+}
+CParticleEvolver_Physics	$LOCAL$/Evolver_1
+{
+	CustomName = "Physics";
+	ConstantVelocityField = float3(0.0000000e+000, 2.0000000e-001, -3.0000001e-001);
+	Drag = 1.5000000e+000;
+	VelocityFieldSampler = "Turb";
+}
+CParticleSamplerProceduralTurbulence	$LOCAL$/CParticleSamplerProceduralTurbulence_3C68980A
+{
+	SamplerName = "Turb";
+	Wavelength = 1.5000001e-001;
+	Strength = 5.5684663e-002;
+	TimeScale = 5.0000000e-001;
+}
+CParticleSamplerCurve	$LOCAL$/CParticleSamplerCurve_6F1DEFF9
+{
+	SamplerName = "TemperatureDecayAndAlpha";
+	ValueType = Float2;
+	Times = 
+	{
+		0.0000000e+000,
+		7.0101142e-001,
+		1.0000000e+000,
+	};
+	FloatValues = 
+	{
+		1.0000000e+000,
+		1.0000000e+000,
+		7.1387506e-001,
+		1.0000000e+000,
+		4.3003809e-001,
+		0.0000000e+000,
+	};
+	FloatTangents = 
+	{
+		0.0000000e+000,
+		0.0000000e+000,
+		0.0000000e+000,
+		0.0000000e+000,
+		-5.5802625e-001,
+		0.0000000e+000,
+		-2.3800392e-001,
+		0.0000000e+000,
+		-3.2854143e-001,
+		-2.7132306e+000,
+		0.0000000e+000,
+		0.0000000e+000,
+	};
+	MinLimits = float4(0.0000000e+000, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
+}

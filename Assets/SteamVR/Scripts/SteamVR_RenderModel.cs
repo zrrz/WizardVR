@@ -1,4 +1,4 @@
-﻿//========= Copyright 2014, Valve Corporation, All rights reserved. ===========
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
 //
 // Purpose: Render model of associated tracked object
 //
@@ -278,7 +278,7 @@ public class SteamVR_RenderModel : MonoBehaviour
 					return true;
 				}
 
-				Debug.Log("[" + gameObject.name + "] Render model does not support components, falling back to single mesh.", this);
+				Debug.Log("[" + gameObject.name + "] Render model does not support components, falling back to single mesh.");
 			}
 
 			if (!string.IsNullOrEmpty(renderModelName))
@@ -311,8 +311,7 @@ public class SteamVR_RenderModel : MonoBehaviour
 
 	RenderModel LoadRenderModel(CVRRenderModels renderModels, string renderModelName, string baseName)
 	{
-    Debug.Log("Loading render model");
-    var pRenderModel = System.IntPtr.Zero;
+        var pRenderModel = System.IntPtr.Zero;
 
 		EVRRenderModelError error;
 		while ( true )
@@ -330,7 +329,7 @@ public class SteamVR_RenderModel : MonoBehaviour
 			return null;
 		}
 
-    var renderModel = (RenderModel_t)Marshal.PtrToStructure(pRenderModel, typeof(RenderModel_t));
+        var renderModel = (RenderModel_t)Marshal.PtrToStructure(pRenderModel, typeof(RenderModel_t));
 
 		var vertices = new Vector3[renderModel.unVertexCount];
 		var normals = new Vector3[renderModel.unVertexCount];
@@ -425,14 +424,9 @@ public class SteamVR_RenderModel : MonoBehaviour
 
 				material = new Material(shader != null ? shader : Shader.Find("Standard"));
 				material.mainTexture = texture;
-        //material.hideFlags = HideFlags.DontUnloadUnusedAsset;
+				//material.hideFlags = HideFlags.DontUnloadUnusedAsset;
 
-        //material.SetFloat("_Mode", 3f);
-        //Color col = material.GetColor("_Color");
-        //col.a = 0.1f;
-        //material.SetColor("_Color", col);
-
-        materials[renderModel.diffuseTextureId] = material;
+				materials[renderModel.diffuseTextureId] = material;
 
 				renderModels.FreeTexture(pDiffuseTexture);
 			}

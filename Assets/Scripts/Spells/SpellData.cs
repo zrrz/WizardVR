@@ -4,7 +4,7 @@ using System.Collections;
 public class SpellData : ScriptableObject {
   public GameObject castingObject;
   public GameObject projectileObject;
-  public GameObject impactObject;
+//  public GameObject impactObject;
 
   public bool canFizzle = false;
   public float spellFizzleTime = 5f;

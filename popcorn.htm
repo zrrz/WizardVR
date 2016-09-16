@@ -1,0 +1,390 @@
+<html><head><title>popcorn-engine logfile</title>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<style>body
+{
+	padding-top: 44px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	background: #bbbbbb;
+	margin: 0px;
+	color: #000000;
+	font-family: Consolas, Courier;
+	font-size: 10pt;
+}
+.header2
+{
+	font-size: 72px;
+	left: 5px;
+	color: #8a98b0;
+	position: absolute;
+	top: -22px
+}
+.header
+{
+	left: 0px;
+	overflow: hidden;
+	width: 100%;
+	color: #ffffff;
+	font-family: Verdana, Arial;
+	position: absolute;
+	top: 0px;
+	height: 44px;
+	background-color: #7b8aa6
+}
+.pagetitle
+{
+	font-size: 22px;
+	z-index: 100;
+	left: 5px;
+	color: #ffffff;
+	position: absolute;
+	top: 14px;
+}
+.copyright
+{
+	font-size: 10px;
+	z-index: 60;
+	left: -8px;
+	width: 100%;
+	color: #acb6c8;
+	position: absolute;
+	top: 1px;
+	text-align: right;
+	text-decoration: none;
+}
+.build
+{
+	font-size: 12px;
+	color: #eeeeee;
+	text-decoration: none;
+}
+a.header1:link
+{
+	font-size: 30px;
+	z-index: 50;
+	left: -8px;
+	width: 100%;
+	color: #a0acc0;
+	position: absolute;
+	top: 6px;
+	text-align: right;
+	text-decoration: none;
+}
+a.header1:visited
+{
+	font-size: 30px;
+	z-index: 50;
+	left: -8px;
+	width: 100%;
+	color: #a0acc0;
+	position: absolute;
+	top: 6px;
+	text-align: right;
+	text-decoration: none;
+}
+a.header1:hover
+{
+	font-size: 30px;
+	z-index: 50;
+	left: -8px;
+	width: 100%;
+	color: #acb6c8;
+	position: absolute;
+	top: 6px;
+	text-align: right;
+	text-decoration: none;
+}
+.log_caller { color: #666666; }
+.dll { color: #800070; }
+.M   { color: #000000; background-color: #DDDDDD; white-space: pre; }
+.W   { color: #000000; background-color: #FFAA33; white-space: pre; }
+.E   { color: #FFFFFF; background-color: #DD1100; white-space: pre; }
+.EC  { color: #FFFFFF; background-color: #DD0000; white-space: pre; }
+.EI  { color: #FFFFFF; background-color: #EE0000; white-space: pre; }
+.EF  { color: #FFFFFF; background-color: #FF0000; white-space: pre; }
+</style>
+</head>
+<body>
+<div class=header id=header>
+	<a class=header1 id=header1 href="http://www.popcornfx.com/">www.popcornfx.com</a>
+	<div class=copyright id=copyright>Copyright (c) Persistant Studios 2010-2016</div>
+	<div class=header2 id=header2>PopcornFX</div>
+	<div class=pagetitle id=pagetitle>PopcornFX logfile. <font class=build>build 1.10.3.31187, Fri Aug 19 17:01:55 2016 +0200</font></i></div>
+</div><div class=M><center>... STARTUP ...</center></div>
+<div class=M>[BOOT]> License keycode: "PKSTORE-PERSONAL-{536160474FEEA09F}"</div>
+<div class=M>[BOOT]> Popcorn runtime build config: .... RELEASE</div>
+<div class=M>[BOOT]> Has debug asserts: .................... NO</div>
+<div class=M>[BOOT]> Has release asserts: ................. YES</div>
+<div class=M>[BOOT]> Has anonymous asserts: ................ NO</div>
+<div class=M>[BOOT]> Has containers monitoring: ............ NO</div>
+<div class=M>[BOOT]> Has iterators debug checks: ........... NO</div>
+<div class=M>[BOOT]> Mem debug level: ....................... 0</div>
+<div class=M>[BOOT]> Has default mem allocators: .......... YES</div>
+<div class=M>[BOOT]> |</div>
+<div class=M>[BOOT]> | ... BOOTING HH_KERNEL ...</div>
+<div class=M>[BOOT]> [KR_CALLSTACK             ]:Startup       338 usec         0 bytes      0 KbTotal</div>
+<div class=M>[BOOT]> [KR_PERFMONITOR           ]:Startup         2 usec       134 bytes      1 KbTotal</div>
+<div class=M>[BOOT]> [KR_MEM                   ]:Startup         0 usec        99 bytes      1 KbTotal</div>
+<div class=M>[BOOT]> [KR_CONTAINERS            ]:Startup         0 usec         0 bytes      1 KbTotal</div>
+<div class=M>[BOOT]> [KR_ASSERT                ]:Startup         0 usec         0 bytes      1 KbTotal</div>
+<div class=M>[BOOT]> [KR_BUFFER                ]:Startup         3 usec      8219 bytes      9 KbTotal</div>
+<div class=M>[BOOT]> [KR_STRING                ]:Startup         0 usec      2102 bytes     11 KbTotal</div>
+<div class=M>[BOOT]> [KR_RTTI                  ]:Startup         0 usec         0 bytes     11 KbTotal</div>
+<div class=M>[BOOT]> [KR_THREADS               ]:Startup        11 usec         0 bytes     11 KbTotal</div>
+<div class=M>[BOOT]> [KR_THREAD_POOL           ]:Startup         0 usec         0 bytes     12 KbTotal</div>
+<div class=M>[KR_CAPS_CPU]> Multi-Core system, Multi-threaded cores</div>
+<div class=M>[KR_CAPS_CPU]>      Logical processors reported by OS : 8</div>
+<div class=M>[KR_CAPS_CPU]>      Visible logical processors        : 8</div>
+<div class=M>[KR_CAPS_CPU]>      Cores                             : 4</div>
+<div class=M>[KR_CAPS_CPU]>      Physical packages                 : 1</div>
+<div class=M>[KR_CAPS_CPU]> ---- Package 0 -------------------------</div>
+<div class=M>[KR_CAPS_CPU]>      Vendor                            : GenuineIntel</div>
+<div class=M>[KR_CAPS_CPU]>      CPU Name                          : "Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz"</div>
+<div class=M>[KR_CAPS_CPU]>      Frequency                         : 3410.0 MHz (3407.759 measured)</div>
+<div class=M>[KR_CAPS_CPU]>      Microarchitecture                 : 5E, 64-bits</div>
+<div class=M>[KR_CAPS_CPU]>      Extensions                        : VirMode DBG     PageSz4 RDTSC   MSR     PAE     MCE     CXCHG8  APIC    SEP     MTRR    PGE     </div>
+<div class=M>[KR_CAPS_CPU]>                                          MCA     CMOV    PAT     PSE36   CLFlush DebugSt ACPI    FXSR    SSnoop  HThread ThMon   ThMon2  </div>
+<div class=M>[KR_CAPS_CPU]>                                          IA64Ext PBE     ExecDis DTES64  MONITOR DS_CPL  VMEXT   SMEXT   ESpdStp CXCHG16 XTPR    PDCM    </div>
+<div class=M>[KR_CAPS_CPU]>                                          x2APIC  XSave   OsXSave TSCInv  MOVBE   POPCNT  CLMUL   BMI1    BMI2    F16C    AES     FMA3    </div>
+<div class=M>[KR_CAPS_CPU]>                                          RDRAND  MMX     SSE     SSE2    SSE3    SSSE3   SSE4_1  SSE4_2  AVX     AVX2    </div>
+<div class=M>[KR_CAPS_CPU]>      CPUID Leaves                      : 00000016-00000008</div>
+<div class=M>[KR_CAPS_CPU]>      CACHE TYPE                  SIZE         ASSOCIATIVITY  LINE-SIZE</div>
+<div class=M>[KR_CAPS_CPU]>         L1 Data cache              32 KB             8 ways   64-bytes</div>
+<div class=M>[KR_CAPS_CPU]>         L1 Instruction cache       32 KB             8 ways   64-bytes</div>
+<div class=M>[KR_CAPS_CPU]>         L2 Unified cache          256 KB             4 ways   64-bytes</div>
+<div class=M>[KR_CAPS_CPU]>         L3 Unified cache         8192 KB            16 ways   64-bytes</div>
+<div class=M>[KR_CAPS_CPU]>      PROCESSOR  APIC_ID  PACKAGE     CORE   THREAD    CACHES</div>
+<div class=M>[KR_CAPS_CPU]>              0     0000        0        0        0    L1D[0] L1I[0] L2[0] L3[0]</div>
+<div class=M>[KR_CAPS_CPU]>              1     0001        0        0        1    L1D[0] L1I[0] L2[0] L3[0]</div>
+<div class=M>[KR_CAPS_CPU]>              2     0002        0        1        0    L1D[1] L1I[1] L2[1] L3[0]</div>
+<div class=M>[KR_CAPS_CPU]>              3     0003        0        1        1    L1D[1] L1I[1] L2[1] L3[0]</div>
+<div class=M>[KR_CAPS_CPU]>              4     0004        0        2        0    L1D[2] L1I[2] L2[2] L3[0]</div>
+<div class=M>[KR_CAPS_CPU]>              5     0005        0        2        1    L1D[2] L1I[2] L2[2] L3[0]</div>
+<div class=M>[KR_CAPS_CPU]>              6     0006        0        3        0    L1D[3] L1I[3] L2[3] L3[0]</div>
+<div class=M>[KR_CAPS_CPU]>              7     0007        0        3        1    L1D[3] L1I[3] L2[3] L3[0]</div>
+<div class=M>[BOOT]> [KR_CAPS_CPU              ]:Startup     63456 usec      1321 bytes     13 KbTotal</div>
+<div class=M>[KR_CAPS_MEM]> Detecting memory:</div>
+<div class=M>[KR_CAPS_MEM]>      MEMORY        :          USED     AVAILABLE         TOTAL</div>
+<div class=M>[KR_CAPS_MEM]>      physical      :     5833.0 Mb    10453.0 Mb    16286.0 Mb</div>
+<div class=M>[KR_CAPS_MEM]>      page file     :     7490.0 Mb    11228.0 Mb    18718.0 Mb</div>
+<div class=M>[KR_CAPS_MEM]>      virtual       :     2480.0 Mb 134215248.0 Mb 134217728.0 Mb</div>
+<div class=M>[KR_CAPS_MEM]>      Address range : 00007FFFFFFEFFFF - 0000000000010000</div>
+<div class=M>[BOOT]> [KR_CAPS_MEM              ]:Startup        39 usec        99 bytes     13 KbTotal</div>
+<div class=M>[BOOT]> [KR_PROFILER              ]:Startup         6 usec      2629 bytes     16 KbTotal</div>
+<div class=M>[BOOT]> [KR_CHECKSUM              ]:Startup         0 usec         0 bytes     16 KbTotal</div>
+<div class=M>[BOOT]> [KR_COMPRESSION           ]:Startup         0 usec         0 bytes     16 KbTotal</div>
+<div class=M>[BOOT]> [KR_FILE                  ]:Startup        11 usec        35 bytes     16 KbTotal</div>
+<div class=M>[BOOT]> [KR_PLUGINS               ]:Startup         0 usec        83 bytes     16 KbTotal</div>
+<div class=M>[BOOT]> [KR_SCHEDULER             ]:Startup       327 usec     38686 bytes     54 KbTotal</div>
+<div class=M>[BOOT]> [KR_RESOURCES             ]:Startup         0 usec       107 bytes     54 KbTotal</div>
+<div class=M>[BOOT]> |</div>
+<div class=M>[BOOT]> | ... BOOTING KR_BASE_OBJECT ...</div>
+<div class=M>[BOOT]> [KR_BASE_OBJECT           ]:Startup        65 usec    117690 bytes    169 KbTotal</div>
+<div class=M>[BOOT]> |</div>
+<div class=M>[BOOT]> | ... BOOTING HH-EngineUtils ...</div>
+<div class=M>[BOOT]> [KR_RANDOM                ]:Startup         4 usec      5137 bytes    175 KbTotal</div>
+<div class=M>[BOOT]> [KR_TIMELINE              ]:Startup         0 usec         0 bytes    175 KbTotal</div>
+<div class=M>[BOOT]> [KR_ACTIONS               ]:Startup        66 usec     21236 bytes    195 KbTotal</div>
+<div class=M>[BOOT]> [KR_CORE                  ]:Startup        96 usec     13370 bytes    209 KbTotal</div>
+<div class=M>[BOOT]> [KR_SAMPLERS              ]:Startup        29 usec      7250 bytes    216 KbTotal</div>
+<div class=M>[BOOT]> [EU_SKELETON              ]:Startup         8 usec      3455 bytes    219 KbTotal</div>
+<div class=M>[BOOT]> |</div>
+<div class=M>[BOOT]> | ... BOOTING HH_COMPILER ...</div>
+<div class=M>[BOOT]> [HH_COMPILER              ]:Startup       147 usec     18379 bytes    237 KbTotal</div>
+<div class=M>[BOOT]> |</div>
+<div class=M>[BOOT]> | ... BOOTING HH_GEOMETRICS ...</div>
+<div class=M>[BOOT]> [GE_SKELETON              ]:Startup         0 usec         0 bytes    237 KbTotal</div>
+<div class=M>[BOOT]> [GE_MESH                  ]:Startup        54 usec      8132 bytes    245 KbTotal</div>
+<div class=M>[GF_MESH_DEFORMERS]> CPU Dispatch mapped implementation of Skeletal Skinner to 'SIMD'</div>
+<div class=M>[BOOT]> [GF_MESH_DEFORMERS        ]:Startup        33 usec     44201 bytes    289 KbTotal</div>
+<div class=M>[BOOT]> [GE_MESH_RESOURCE         ]:Startup         5 usec      4686 bytes    293 KbTotal</div>
+<div class=M>[BOOT]> [GE_MESH_KDTREE           ]:Startup         0 usec         0 bytes    293 KbTotal</div>
+<div class=M>[BOOT]> [GE_SHAPES                ]:Startup        56 usec     10960 bytes    304 KbTotal</div>
+<div class=M>[BOOT]> [GE_COLLIDERS             ]:Startup         0 usec         0 bytes    304 KbTotal</div>
+<div class=M>[BOOT]> [GE_BILLBOARDS            ]:Startup         0 usec         0 bytes    304 KbTotal</div>
+<div class=M>[BOOT]> [GE_RECTANGLE_LIST        ]:Startup         5 usec      4329 bytes    309 KbTotal</div>
+<div class=M>[BOOT]> |</div>
+<div class=M>[BOOT]> | ... BOOTING HH_IMAGING ...</div>
+<div class=M>[IM_IMAGES]> CPU Dispatch mapped implementation of ETC1 decompressor to 'SSE4.1'</div>
+<div class=M>[BOOT]> [IM_IMAGES                ]:Startup        28 usec      4491 bytes    313 KbTotal</div>
+<div class=M>[BOOT]> |</div>
+<div class=M>[BOOT]> | ... BOOTING HH_PARTICLES ...</div>
+<div class=M>[BOOT]> [HH_PARTICLES             ]:Startup      2130 usec    889673 bytes   1182 KbTotal</div>
+<div class=M>[BOOT]> [HH-CompilerBackend_CPU_Emulation]:Startup         5 usec     10327 bytes   1188 KbTotal</div>
+<div class=M>[KR_PLUGINS]> Registering module "CompilerBackend_CPU_Emulation" to handler "hh_compiler".</div>
+<div class=M>[KR_PLUGINS]> Registering module "PopcornFX-Image codec dds" to handler "im_codec".</div>
+<div class=M>[KR_PLUGINS]> Registering module "PopcornFX-Image codec png" to handler "im_codec".</div>
+<div class=M>[KR_PLUGINS]> Registering module "PopcornFX-Image codec targa" to handler "im_codec".</div>
+<div class=M>[KR_PLUGINS]> Registering module "PopcornFX-Image codec jpeg" to handler "im_codec".</div>
+<div class=M>[BOOT]> [PK_UNITY_PLUGIN          ]:Startup         0 usec         0 bytes   1189 KbTotal</div>
+<div class=M>[PK_UNITY_PLUGIN]> Startup PKFX</div>
+<div class=M>[PK_UNITY_PLUGIN]> Added C:/Users/3BlackDot/Documents/WizardVR/Assets/StreamingAssets/PackFx for watching.</div>
+<div class=M>[PK_UNITY_PLUGIN]> Exploring pack C:/Users/3BlackDot/Documents/WizardVR/Assets/StreamingAssets/PackFx...</div>
+<div class=M>[PK_UNITY_PLUGIN]>   -> Particles/Blast.pkfx</div>
+<div class=M>[PK_UNITY_PLUGIN]>   -> Particles/BrightSmoke01.pkfx</div>
+<div class=M>[PK_UNITY_PLUGIN]>   -> Particles/ButterFly_sceneIntersect2.pkfx</div>
+<div class=M>[PK_UNITY_PLUGIN]>   -> Particles/Pk_Sculpt.pkfx</div>
+<div class=M>[PK_UNITY_PLUGIN]>   -> Particles/TestLab/AnimatedBackdrops/BrightAnimMesh6.pkfx</div>
+<div class=M>[PK_UNITY_PLUGIN]>   -> Particles/v170/OrangeAudioViewer2.pkfx</div>
+<div class=M>[PK_UNITY_PLUGIN]>   -> Particles/WizardWand.pkfx</div>
+<div class=M>[GE_MESH_RESOURCE]> Loading Mesh "C:/Users/3BlackDot/Documents/WizardVR/Assets/StreamingAssets/PackFx/Meshes/Sphere.pkmm"</div>
+<div class=M>[GE_MESH_RESOURCE]> read KdTree chunk: leaves=2.6 Kb (50.0 %), nodes=0.5 Kb, total=3.2 Kb (expanded=5.7 Kb)</div>
+<div class=M>[GE_MESH_RESOURCE]> Loading Mesh "C:/Users/3BlackDot/Documents/WizardVR/Assets/StreamingAssets/PackFx/Meshes/popman/popman_spell_casting.pkmm"</div>
+<div class=M>[GE_MESH_RESOURCE]> read KdTree chunk: leaves=99.6 Kb (50.0 %), nodes=30.7 Kb, total=130.3 Kb (expanded=229.9 Kb)</div>
+<div class=M>[GE_MESH_RESOURCE]> Loading Mesh "C:/Users/3BlackDot/Documents/WizardVR/Assets/StreamingAssets/PackFx/Meshes/Staff_Blob.pkmm"</div>
+<div class=M>[GE_MESH_RESOURCE]> read KdTree chunk: leaves=20.3 Kb (50.0 %), nodes=11.7 Kb, total=32.0 Kb (expanded=52.3 Kb)</div>
+<div class=M>[GE_MESH_RESOURCE]> read KdTree chunk: leaves=30.2 Kb (50.0 %), nodes=21.9 Kb, total=52.1 Kb (expanded=82.2 Kb)</div>
+<div class=W>[PK_UNITY_PLUGIN]> Pack "C:/Users/3BlackDot/Documents/WizardVR/Assets/StreamingAssets/PackFx" already loaded.</div>
+<div class=W>[PK_UNITY_PLUGIN]> Pack "C:/Users/3BlackDot/Documents/WizardVR/Assets/StreamingAssets/PackFx" already loaded.</div>
+<div class=W>[PK_UNITY_PLUGIN]> Pack "C:/Users/3BlackDot/Documents/WizardVR/Assets/StreamingAssets/PackFx" already loaded.</div>
+<div class=W>[PK_UNITY_PLUGIN]> Pack "C:/Users/3BlackDot/Documents/WizardVR/Assets/StreamingAssets/PackFx" already loaded.</div>
+<div class=W>[PK_UNITY_PLUGIN]> Pack "C:/Users/3BlackDot/Documents/WizardVR/Assets/StreamingAssets/PackFx" already loaded.</div>
+<div class=W>[PK_UNITY_PLUGIN]> Pack "C:/Users/3BlackDot/Documents/WizardVR/Assets/StreamingAssets/PackFx" already loaded.</div>
+<div class=W>[HH_PARTICLES]> Unsupported renderer found : "CParticleRenderer_Light" ! INCOMPLETE RENDERER</div>
+<div class=E>[HH_PARTICLES]> Particle Renderer : runtime object creation failed for renderer "Particles/WizardWand.pkfx/CParticleRenderer_Light_0BDDD588"</div>
+<div class=M>[PK_UNITY_PLUGIN]> Preloading OK "Particles/WizardWand.pkfx"</div>
+<div class=W>[PK_UNITY_PLUGIN]> Performance warning: Texture has no mipmaps (Textures\FX\BB_Glow_02_64.tga)</div>
+<div class=M>[KR_PROFILER]> Loaded 2D Texture (Textures/FX/BB_Glow_02_64.tga) : 0.736 ms</div>
+<div class=M>[KR_PROFILER]> Loaded 2D Texture (Textures/FX/SymmetricGradient2.dds) : 0.141 ms</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=0, maxind=0 to maxvert=320, maxind=416 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=W>[PK_UNITY_PLUGIN]> Performance warning: runtime conversion of image from Lum8 to BGRA8 (mip0:64x64) : 0.008 ms</div>
+<div class=W>[PK_UNITY_PLUGIN]> Performance warning: runtime conversion of image from Lum8 to BGRA8 (mip1:32x32) : 0.002 ms</div>
+<div class=W>[PK_UNITY_PLUGIN]> Performance warning: runtime conversion of image from Lum8 to BGRA8 (mip2:16x16) : 0.001 ms</div>
+<div class=W>[PK_UNITY_PLUGIN]> Performance warning: runtime conversion of image from Lum8 to BGRA8 (mip3:8x8) : 0.001 ms</div>
+<div class=W>[PK_UNITY_PLUGIN]> Performance warning: runtime conversion of image from Lum8 to BGRA8 (mip4:4x4) : 0.000 ms</div>
+<div class=W>[PK_UNITY_PLUGIN]> Performance warning: runtime conversion of image from Lum8 to BGRA8 (mip5:2x2) : 0.000 ms</div>
+<div class=W>[PK_UNITY_PLUGIN]> Performance warning: runtime conversion of image from Lum8 to BGRA8 (mip6:1x1) : 0.000 ms</div>
+<div class=M>[KR_PROFILER]> Loaded 2D Texture (Textures/FX/Spark_01.dds) : 0.196 ms</div>
+<div class=W>[PK_UNITY_PLUGIN]> Performance warning: Texture has no mipmaps (Textures\FX\BB_ExplosionGlow_01_256.dds)</div>
+<div class=M>[KR_PROFILER]> Loaded 2D Texture (Textures/FX/BB_ExplosionGlow_01_256.dds) : 0.220 ms</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=0, maxind=0 to maxvert=134, maxind=137 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=0, maxind=0 to maxvert=134, maxind=137 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=134, maxind=137 to maxvert=296, maxind=380 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=296, maxind=380 to maxvert=584, maxind=812 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=584, maxind=812 to maxvert=968, maxind=1388 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=320, maxind=416 to maxvert=548, maxind=758 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=968, maxind=1388 to maxvert=1610, maxind=2351 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=1610, maxind=2351 to maxvert=2528, maxind=3728 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=548, maxind=758 to maxvert=926, maxind=1325 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=926, maxind=1325 to maxvert=1502, maxind=2189 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=2528, maxind=3728 to maxvert=3986, maxind=5915 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=134, maxind=137 to maxvert=266, maxind=335 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=1502, maxind=2189 to maxvert=2606, maxind=3845 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=3986, maxind=5915 to maxvert=6164, maxind=9182 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=2606, maxind=3845 to maxvert=3980, maxind=5906 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=266, maxind=335 to maxvert=476, maxind=650 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=6164, maxind=9182 to maxvert=9566, maxind=14285 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=3980, maxind=5906 to maxvert=6266, maxind=9335 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=6266, maxind=9335 to maxvert=9824, maxind=14672 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=476, maxind=650 to maxvert=800, maxind=1136 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=9824, maxind=14672 to maxvert=14816, maxind=22160 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=9566, maxind=14285 to maxvert=14420, maxind=21566 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=800, maxind=1136 to maxvert=1292, maxind=1874 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=14816, maxind=22160 to maxvert=23078, maxind=34553 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD8418 buffers from maxverts=0, maxind=0 to maxvert=134, maxind=137 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=1292, maxind=1874 to maxvert=2024, maxind=2972 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=14420, maxind=21566 to maxvert=22202, maxind=33239 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=23078, maxind=34553 to maxvert=35678, maxind=53453 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=22202, maxind=33239 to maxvert=33872, maxind=50744 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=2024, maxind=2972 to maxvert=3122, maxind=4619 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=33872, maxind=50744 to maxvert=51302, maxind=76889 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=51302, maxind=76889 to maxvert=77804, maxind=116642 (IFORMAT=DXGI_FORMAT_R32_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=35678, maxind=53453 to maxvert=53948, maxind=80858 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=3122, maxind=4619 to maxvert=4784, maxind=7112 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=77804, maxind=116642 to maxvert=117752, maxind=176564 (IFORMAT=DXGI_FORMAT_R32_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=53948, maxind=80858 to maxvert=82310, maxind=123401 (IFORMAT=D3DFMT_INDEX32) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD8418 buffers from maxverts=134, maxind=137 to maxvert=266, maxind=335 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=4784, maxind=7112 to maxvert=7286, maxind=10865 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=82310, maxind=123401 to maxvert=132044, maxind=198002 (IFORMAT=D3DFMT_INDEX32) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=7286, maxind=10865 to maxvert=11930, maxind=17831 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=132044, maxind=198002 to maxvert=219704, maxind=329492 (IFORMAT=D3DFMT_INDEX32) (COLORS=FLOAT4)</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 1024 to 2048</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=11930, maxind=17831 to maxvert=18224, maxind=27272 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=117752, maxind=176564 to maxvert=178358, maxind=267473 (IFORMAT=DXGI_FORMAT_R32_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 2048 to 1024</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=178358, maxind=267473 to maxvert=268934, maxind=403886 (IFORMAT=DXGI_FORMAT_R32_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD8418 buffers from maxverts=266, maxind=335 to maxvert=470, maxind=641 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=219704, maxind=329492 to maxvert=395738, maxind=593543 (IFORMAT=D3DFMT_INDEX32) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=18224, maxind=27272 to maxvert=28202, maxind=42239 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 1024 to 2048</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=395738, maxind=593543 to maxvert=597146, maxind=895655 (IFORMAT=D3DFMT_INDEX32) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=28202, maxind=42239 to maxvert=42452, maxind=63614 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 2048 to 1024</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 1024 to 2048</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 2048 to 1024</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 1024 to 2048</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 1024 to 2048</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=268934, maxind=403886 to maxvert=393782, maxind=613451 (IFORMAT=DXGI_FORMAT_R32_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=597146, maxind=895655 to maxvert=900800, maxind=1351136 (IFORMAT=D3DFMT_INDEX32) (COLORS=FLOAT4)</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 2048 to 1024</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 1024 to 2048</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 2048 to 1024</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 1024 to 2048</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 2048 to 1024</div>
+<div class=W>[PK_UNITY_PLUGIN]> Pack "C:/Users/3BlackDot/Documents/WizardVR/Assets/StreamingAssets/PackFx" already loaded.</div>
+<div class=W>[PK_UNITY_PLUGIN]> Pack "C:/Users/3BlackDot/Documents/WizardVR/Assets/StreamingAssets/PackFx" already loaded.</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=0, maxind=0 to maxvert=134, maxind=137 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=0, maxind=0 to maxvert=164, maxind=182 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 2048 to 1024</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=0, maxind=0 to maxvert=134, maxind=137 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=134, maxind=137 to maxvert=272, maxind=344 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=164, maxind=182 to maxvert=320, maxind=416 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=272, maxind=344 to maxvert=476, maxind=650 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=476, maxind=650 to maxvert=848, maxind=1208 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=320, maxind=416 to maxvert=608, maxind=848 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=848, maxind=1208 to maxvert=1406, maxind=2045 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=608, maxind=848 to maxvert=998, maxind=1433 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=1406, maxind=2045 to maxvert=2192, maxind=3224 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=998, maxind=1433 to maxvert=1574, maxind=2297 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=134, maxind=137 to maxvert=266, maxind=335 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=2192, maxind=3224 to maxvert=3458, maxind=5123 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=1574, maxind=2297 to maxvert=2486, maxind=3665 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=3458, maxind=5123 to maxvert=5372, maxind=7994 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=2486, maxind=3665 to maxvert=3938, maxind=5843 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=5372, maxind=7994 to maxvert=8438, maxind=12593 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=266, maxind=335 to maxvert=470, maxind=641 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=3938, maxind=5843 to maxvert=5996, maxind=8930 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=8438, maxind=12593 to maxvert=13124, maxind=19622 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=5996, maxind=8930 to maxvert=9074, maxind=13547 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=470, maxind=641 to maxvert=788, maxind=1118 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD8418 buffers from maxverts=0, maxind=0 to maxvert=140, maxind=146 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=13124, maxind=19622 to maxvert=20060, maxind=30026 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=9074, maxind=13547 to maxvert=13712, maxind=20504 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=20060, maxind=30026 to maxvert=30728, maxind=46028 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=788, maxind=1118 to maxvert=1250, maxind=1811 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=30728, maxind=46028 to maxvert=46784, maxind=70112 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=46784, maxind=70112 to maxvert=70310, maxind=105401 (IFORMAT=DXGI_FORMAT_R32_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=70310, maxind=105401 to maxvert=105758, maxind=158573 (IFORMAT=DXGI_FORMAT_R32_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=1250, maxind=1811 to maxvert=1964, maxind=2882 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD8418 buffers from maxverts=140, maxind=146 to maxvert=278, maxind=353 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=105758, maxind=158573 to maxvert=158702, maxind=237989 (IFORMAT=DXGI_FORMAT_R32_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=13712, maxind=20504 to maxvert=20678, maxind=30953 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=1964, maxind=2882 to maxvert=3020, maxind=4466 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=20678, maxind=30953 to maxvert=32198, maxind=48233 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=158702, maxind=237989 to maxvert=238994, maxind=358427 (IFORMAT=DXGI_FORMAT_R32_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=3020, maxind=4466 to maxvert=4616, maxind=6860 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=32198, maxind=48233 to maxvert=48920, maxind=73316 (IFORMAT=D3DFMT_INDEX16) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=48920, maxind=73316 to maxvert=74480, maxind=111656 (IFORMAT=D3DFMT_INDEX32) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=4616, maxind=6860 to maxvert=7046, maxind=10505 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=74480, maxind=111656 to maxvert=111980, maxind=167906 (IFORMAT=D3DFMT_INDEX32) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=7046, maxind=10505 to maxvert=10724, maxind=16022 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=111980, maxind=167906 to maxvert=170504, maxind=255692 (IFORMAT=D3DFMT_INDEX32) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=10724, maxind=16022 to maxvert=18704, maxind=27992 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 1024 to 2048</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=170504, maxind=255692 to maxvert=323936, maxind=485840 (IFORMAT=D3DFMT_INDEX32) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=18704, maxind=27992 to maxvert=31454, maxind=47117 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 0000000000763AD8 buffers from maxverts=238994, maxind=358427 to maxvert=346223, maxind=540731 (IFORMAT=DXGI_FORMAT_R32_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=323936, maxind=485840 to maxvert=522374, maxind=783497 (IFORMAT=D3DFMT_INDEX32) (COLORS=FLOAT4)</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD8418 buffers from maxverts=278, maxind=353 to maxvert=506, maxind=695 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 2048 to 1024</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 1024 to 2048</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 1024 to 2048</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing FxMesh 000000004DAD1898 buffers from maxverts=31454, maxind=47117 to maxvert=47966, maxind=71885 (IFORMAT=DXGI_FORMAT_R16_UINT) (COLORS=FLOAT4)</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 2048 to 1024</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 1024 to 2048</div>
+<div class=M>[PK_UNITY_PLUGIN]> Growing Ribbons 000000004D4D1438 buffers from maxverts=522374, maxind=783497 to maxvert=785492, maxind=1178174 (IFORMAT=D3DFMT_INDEX32) (COLORS=FLOAT4)</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 2048 to 1024</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 1024 to 2048</div>
+<div class=M>[HH_PARTICLES]> resizing pages from 2048 to 1024</div>
+<div class=W>[PK_UNITY_PLUGIN]> Pack "C:/Users/3BlackDot/Documents/WizardVR/Assets/StreamingAssets/PackFx" already loaded.</div>
