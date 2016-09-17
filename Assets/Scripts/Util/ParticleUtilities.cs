@@ -56,7 +56,7 @@ public class ParticleUtilities : MonoBehaviour {
 
 		ScaleForceOverLife (ps, scalingValue);
 
-		ScaleShape (ps, scalingValue);
+//		ScaleShape (ps, scalingValue);
 	}
 
 	static void ScaleSizeSpeed (ParticleSystem ps, GameObject parent, float scalingValue, bool scaleParticleSize)
@@ -77,6 +77,7 @@ public class ParticleUtilities : MonoBehaviour {
 		var emission = ps.emission;
 		if (emission.enabled) {
 			var rate = emission.rate;
+//			rate.constant *= scalingValue;
 			rate.curveScalar /= scalingValue;
 			emission.rate = rate;
 		}
