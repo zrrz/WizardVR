@@ -9,6 +9,7 @@ public class ParticleUtilities : MonoBehaviour {
 
   public static void ScaleParticleSystem(GameObject go, float scalingValue, bool scaleParticleSize = true)
   {
+		return;
       //Scale Shuriken Particles Values
       ParticleSystem[] systems;
       
